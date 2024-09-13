@@ -1,0 +1,13 @@
+stages:
+  - build
+
+variables:
+  RUST_BACKTRACE: "1"
+
+build:
+  stage: build
+  image: oven/bun:1
+  before_script:
+    - bun install
+  script:
+    - bun run build
