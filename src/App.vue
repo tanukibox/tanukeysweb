@@ -1,10 +1,21 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { RouterView } from 'vue-router'
+
+const currentYear = new Date().getFullYear();
+
 </script>
 
 <template>
   <RouterView />
+
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong>Tanukeys</strong> is a product by <a href="https://gitlab.com/tanukibox">TanukiBox</a>. All rights
+        reserved © {{ currentYear }}.
+      </p>
+    </div>
+  </footer>
 </template>
 
 <style>
