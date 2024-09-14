@@ -10,4 +10,4 @@ build:
   before_script:
     - bun install
   script:
-    - bun run build
+    - bun run build-only
