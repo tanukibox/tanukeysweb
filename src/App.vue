@@ -8,5 +8,5 @@ import HelloWorld from './components/HelloWorld.vue'
 </template>
 
 <style>
-  @import url('./node_modules/bulma/css/bulma.min.css');
+@import "https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css";
 </style>
