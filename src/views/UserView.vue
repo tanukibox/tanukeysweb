@@ -8,7 +8,6 @@
 
         <p>{{ user.description }}</p>
 
-
       </div>
 
       <div class="fixed-grid mt-5 has-1-cols-mobile has-1-col-tablet has-4-cols-desktop">
