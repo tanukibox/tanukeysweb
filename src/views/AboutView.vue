@@ -99,6 +99,7 @@ section {
   position: absolute;
   inset: 0;
   overflow-y: scroll;
+  padding-bottom: 5em;
 }
 
 section>div {
