@@ -3,17 +3,17 @@
     <div>
 
       <div class="user-data">
-        <img :src="user.profileImage" alt="dp" />
-        <h4 class="title is-4">{{ user.name }}</h4>
+        <img src="https://avatars.githubusercontent.com/u/19194763?v=4" alt="dp" />
+        <h4 class="title is-4">{{ data.user.name }}</h4>
 
-        <p>{{ user.description }}</p>
+        <p>{{ data.user.bio }}</p>
 
       </div>
 
       <div class="fixed-grid mt-5 has-1-cols-mobile has-1-col-tablet has-4-cols-desktop">
         <div class="grid">
 
-          <div class="cell" v-for="(key) in keys" :key="key.id">
+          <div class="cell" v-for="(key) in data.keys" :key="key.id">
             <div class="card">
               <header class="card-header">
                 <p class="card-header-title">{{ key.name }}</p>
@@ -45,22 +45,28 @@
 </template>
 
 <script setup lang="ts">
-const user = {
-  name: "Javier Parada",
-  profileImage: "https://avatars.githubusercontent.com/u/19194763?v=4",
-  description: "I'm a software engineer and a full-stack developer. I love to build web applications and learn new technologies."
-}
-const keys = [
-  { id: "1234", name: "patata.key", description: "sd aknlwqekdbwq lkjdbq wlkd bwlqkbd qlkwdbwqlkd bwlqkdbq lwkdbqlwkd bqlw kdb w klqbdl kwbdlkqwb kldbq wklb" },
-  { id: "1234", name: "patata.key", description: "sd aknlwqekdbwq lkjdbqkldbq wklb" },
-  { id: "1234", name: "patata.key", description: "sd aknlwqekdbwq lkjdbq wlkd bwlqkbd qlkwdbwqlkd bwlqkdbq lwkdbqlwkd bqlw kdb w klqbdl kwbdlkqwb kldbq wklb cew cw cwe cwec wec wec wec wec wec wec wc " },
-  { id: "1234", name: "patata.key", description: "sd aknlwqekdbwq lkjdbq wlk lwkdbqlwkd bqlw kdb w klqbdl kwbdlkqwb kldbq wklb" },
-  { id: "1234", name: "patata.key", description: "sd aknlwqekdbwq lkjdbq wlkd bwlqkbd qlkwdbwqlkd bwlqkdbq lwkdbqlwkd bqlw kdb w klqbdl kwbdlkqwb kldbq wklb" },
-  { id: "1234", name: "patata.key", description: "sd aknlwqekdbwq lkjdbq wlkd= kdb w klqbdl kwbdlkqwb kldbq wklb" },
-  { id: "1234", name: "patata.key", description: "sd aknlwqekdbwq lkjdbq wlkd bwlqkbd qlkwdbwqlkd bwlqkdbq lwkdbqlwkd bqlw kdb w klqbdl kwbdlkqwb kldbq wklb" },
-  { id: "1234", name: "patata.key", description: "sd aknlwqekdbwq lkjdbq wlkd bwlqkbd qlkwdbwqlkd bwlqkdbq lwkdbqlwkd bqlw kdb w klqbdlq lwkdbqlwkd bqlw kdb w klqbdl kwbdlkqwb kldbq wklb" },
-  { id: "1234", name: "patata.key", description: "sd aknlwqekdbwq lkjdbq wlkd bwlqkbd qlkwdbwqlkd bwlqkdbq lwkdbqlwkd bqlw kdb w klqbdl kwbdlkqwb kldbq wklb" }
-]
+import { ref, onMounted } from 'vue';
+
+const data = ref({
+  user: {
+    id: '',
+    name: '',
+    bio: ''
+  },
+  keys: []
+});
+
+onMounted(async () => {
+  try {
+    const response = await fetch('http://localhost:3030/api/v1/users/patata');
+    if (!response.ok) {
+      throw new Error(`ERROR: ${response.status}`);
+    }
+    data.value.user = await response.json();
+  } catch (error) {
+    console.error('Error al obtener los datos:', error);
+  }
+});
 </script>
 
 <style>
