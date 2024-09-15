@@ -13,7 +13,7 @@
       <div class="fixed-grid mt-5 has-1-cols-mobile has-1-col-tablet has-4-cols-desktop">
         <div class="grid">
 
-          <div class="cell" v-for="(key, _) in keys">
+          <div class="cell" v-for="(key) in keys" :key="key.id">
             <div class="card">
               <header class="card-header">
                 <p class="card-header-title">{{ key.name }}</p>
