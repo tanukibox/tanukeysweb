@@ -46,6 +46,10 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+const userId = route.params.userId;
 
 const data = ref({
   user: {
@@ -58,7 +62,7 @@ const data = ref({
 
 onMounted(async () => {
   try {
-    const response = await fetch('http://localhost:3030/api/v1/users/patata');
+    const response = await fetch(`http://localhost:3030/api/v1/users/${userId}`);
     if (!response.ok) {
       throw new Error(`ERROR: ${response.status}`);
     }
